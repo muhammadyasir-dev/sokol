@@ -1,0 +1,15 @@
+./kernel/Makefile.inc
+./kernel/games/
+./kernel/minix/
+./kernel/build.sh
+./kernel/gnu/
+./kernel/tests/
+./kernel/libexec/
+./kernel/sys/
+./kernel/bin/
+./kernel/crypto/
+./kernel/common/
+./kernel/usr.bin/
+./kernel/distrib/
+./kernel/include/
+

@@ -12,4 +12,12 @@
 ./usr.bin/
 ./distrib/
 ./include/
-
+./sys/
+./etc/
+./libexec/
+./games/
+./share/
+./distrib/
+./bin/
+./releasetools/
+./docs/

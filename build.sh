@@ -166,8 +166,6 @@ if test -z "$errmsg"; then
 	eval 'var=$(case x in x) echo abc;; esac); test x"$var" = x"abc"'
 	) >/dev/null 2>&1
     then
-	# XXX: This test is ignored because so many shells fail it; instead,
-	#      the NetBSD build avoids using the problematic construct.
 	: ignore 'Shell does not support "$(...)" with unbalanced ")".'
     fi
 fi
@@ -236,20 +234,6 @@ EOF
     cat <<EOF
 $0: $errmsg
 
-The NetBSD build system requires a shell that supports modern POSIX
-features, as well as the "local" keyword in functions (which is a
-widely-implemented but non-standardised feature).
-
-Please re-run this script under a suitable shell.  For example:
-
-	/path/to/suitable/shell $0 ...
-
-The above command will usually enable build.sh to automatically set
-HOST_SH=/path/to/suitable/shell, but if that fails, then you may also
-need to explicitly set the HOST_SH environment variable, as follows:
-
-	HOST_SH=/path/to/suitable/shell
-	export HOST_SH
 	\${HOST_SH} $0 ...
 EOF
     exit 1

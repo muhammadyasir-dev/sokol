@@ -140,10 +140,10 @@ _SUBDIR=	tools lib include gnu external crypto/external bin games
 _SUBDIR+=	libexec sbin usr.bin
 _SUBDIR+=	usr.sbin share sys etc tests compat
 _SUBDIR+=	.WAIT rescue .WAIT distrib regress
-.if defined(__MINIX)
-# the minix subdir depends on some other things (e.g. lib/) 
-_SUBDIR+=	.WAIT minix
-.endif # defined(__MINIX)
+.if defined(__CORE)
+# the sokol subdir depends on some other things (e.g. lib/) 
+_SUBDIR+=	.WAIT core
+.endif # defined(__CORE)
 
 .for dir in ${_SUBDIR}
 .if "${dir}" == ".WAIT" \
@@ -164,11 +164,11 @@ NOPOSTINSTALL=	# defined
 
 afterinstall: .PHONY .MAKE
 .if ${MKMAN} != "no"
-.if !defined(__MINIX)
+.if !defined(__CORE)
 	${MAKEDIRTARGET} share/man makedb
 .else
-	${MAKEDIRTARGET} minix/man makedb
-.endif # !defined(__MINIX)
+	${MAKEDIRTARGET} core/man makedb
+.endif # !defined(__CORE)
 .endif
 .if (${MKUNPRIVED} != "no" && ${MKINFO} != "no")
 	${MAKEDIRTARGET} gnu/usr.bin/texinfo/install-info infodir-meta
@@ -241,10 +241,10 @@ BUILDTARGETS+=	do-distrib-dirs
 BUILDTARGETS+=	includes
 .endif
 BUILDTARGETS+=	do-lib
-.if !defined(__MINIX)
-# LSC Not used in MINIX3
+.if !defined(__CORE)
+# LSC Not used in CORE3
 BUILDTARGETS+=	do-compat-lib
-.endif # !defined(__MINIX)
+.endif # !defined(__CORE)
 .if ${MKX11} != "no"
 BUILDTARGETS+=	do-x11
 .endif
@@ -253,9 +253,9 @@ BUILDTARGETS+=	do-build
 BUILDTARGETS+=	do-extsrc
 .endif
 
-.if defined(__MINIX) && ${MKSRC} == "yes"
+.if defined(__CORE) && ${MKSRC} == "yes"
 BUILDTARGETS+=	do-installsrc
-.endif # defined(__MINIX)
+.endif # defined(__CORE)
 
 BUILDTARGETS+=	do-obsolete
 
@@ -299,7 +299,7 @@ show-params: .PHONY .MAKE
 
 START_TIME!=	date
 
-.if defined(__MINIX)
+.if defined(__CORE)
 world: build .PHONY .MAKE
 	${MAKEDIRTARGET} . etcfiles
 	@echo "WARNING: "
@@ -312,7 +312,7 @@ etcfiles: .PHONY .MAKE
 etcforce: .PHONY .MAKE
 	${MAKEDIRTARGET} etc install-etc-files  DESTDIR=${DESTDIR:U/}
 
-.endif # defined(__MINIX)
+.endif # defined(__CORE)
 
 build: .PHONY .MAKE
 .if defined(BUILD_DONE)
@@ -323,10 +323,10 @@ build: .PHONY .MAKE
 	${MAKEDIRTARGET} . ${tgt}
 .endfor
 	${MAKEDIRTARGET} etc install-etc-release
-.if defined(__MINIX)
+.if defined(__CORE)
 	${MAKEDIRTARGET} etc install-etc-files-safe DESTDIR=${DESTDIR:U/}
 	${MAKEDIRTARGET} releasetools do-hdboot
-.endif # defined(__MINIX)
+.endif # defined(__CORE)
 	@echo   "Build started at:  ${START_TIME}"
 	@printf "Build finished at: " && date
 .endif
@@ -359,7 +359,7 @@ distribution buildworld: .PHONY .MAKE
 #
 
 HOST_UNAME_S!=	uname -s
-.if ${HOST_OSTYPE:C/\-.*//} != "Minix"
+.if ${HOST_OSTYPE:C/\-.*//} != "Core"
 HOST_UNAME_M!=	uname -m
 .else
 HOST_UNAME_M:= ${MACHINE}
@@ -372,8 +372,8 @@ installworld: .PHONY .MAKE
 .endif
 .if !defined(INSTALLWORLDDIR) || \
     ${INSTALLWORLDDIR} == "" || ${INSTALLWORLDDIR} == "/"
-.if (${HOST_UNAME_S} != "NetBSD") && (${HOST_UNAME_S} != "Minix")
-	@echo "Won't cross-make ${.TARGET} from ${HOST_UNAME_S} to Minix with INSTALLWORLDDIR=/"
+.if (${HOST_UNAME_S} != "NetBSD") && (${HOST_UNAME_S} != "Sokol")
+	@echo "Won't cross-make ${.TARGET} from ${HOST_UNAME_S} to Sokol with INSTALLWORLDDIR=/"
 	@false
 .endif
 .if (${HOST_UNAME_M} != ${MACHINE})
@@ -555,12 +555,12 @@ install-${dir}: .PHONY
 	@true
 .endfor
 
-.if defined(__MINIX)
+.if defined(__SOKOL)
 SRCTAR=src.tar.gz
 do-installsrc:
 	cd ${.CURDIR} && git ls-tree -r HEAD --name-only | tar czf ${.OBJDIR}/$(SRCTAR) -T -
 	${INSTALL_FILE} ${.OBJDIR}/$(SRCTAR) ${DESTDIR}/usr/src/
-.endif # defined(__MINIX)
+.endif # defined(__SOKOL)
 
 #
 # XXX this needs to change when distrib Makefiles are recursion compliant

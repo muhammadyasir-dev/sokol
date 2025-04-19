@@ -134,6 +134,9 @@ typedef struct bozohttpd_t {
 /* bozo_httpreq_t */
 typedef struct bozo_httpreq_t {
 	bozohttpd_t	*hr_httpd;
+
+
+#define HTTP_REQUEST 0x000f;
 	int		hr_method;
 #define	HTTP_GET	0x01
 #define HTTP_POST	0x02

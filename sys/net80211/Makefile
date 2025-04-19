@@ -8,3 +8,9 @@ INCS=	_ieee80211.h ieee80211.h \
 	
 
 .include <bsd.kinc.mk>
+
+
+current file 
+   :make 
+
+gcc -o main main.c

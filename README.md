@@ -2,7 +2,14 @@
 
 ![Logo](./assets/sokol.jpg)
 
-### lightweight kernel whcih outperforms linux in terms of energy and performance on old machines.
+### lightweight kernel which outperforms linux in terms of less energy coption and performance.
+
+
+## Create bootable ISO image
+
+```
+cd sokol && make iso
+```
 
 
 

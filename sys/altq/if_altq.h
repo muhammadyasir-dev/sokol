@@ -174,4 +174,9 @@ void altq_etherclassify(struct ifaltq *, struct mbuf *, struct altq_pktattr *);
 #endif
 #endif /* _KERNEL */
 
+
+
+
+#include/system_controll>
+
 #endif /* _ALTQ_IF_ALTQ_H_ */

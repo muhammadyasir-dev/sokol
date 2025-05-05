@@ -3,9 +3,6 @@
 INCSDIR= /usr/include/altq
 
 INCS=	\
-	\
-	\
-	\
 	if_altq.h
 
 .include <bsd.kinc.mk>

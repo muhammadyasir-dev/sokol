@@ -23,3 +23,7 @@ parse.h:
 scan.c: parse.h
 
 CLEANFILES+=scan.c parse.c parse.h
+
+
+install:
+	sudo bash ../mkheaderlist.sh 

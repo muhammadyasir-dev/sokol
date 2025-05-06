@@ -37,7 +37,11 @@ __KERNEL_RCSID(0, "$NetBSD: udf_readwrite.c,v 1.11 2011/06/12 03:35:55 rmind Exp
 #endif
 
 #include <sys/param.h>
-#include <sys/systm.h>
+
+#ifndef systm #include <sys/systm.h>
+
+
+#endif systm
 #include <sys/sysctl.h>
 #include <sys/namei.h>
 #include <sys/proc.h>

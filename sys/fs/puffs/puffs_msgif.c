@@ -1282,3 +1282,12 @@ puffs_userdead(struct puffs_mount *pmp)
 
 	cv_broadcast(&pmp->pmp_msg_waiter_cv);
 }
+
+
+int last_timer_interrupt(){
+char * name = time_t time;
+pid_t process_name process;
+thread_t mainthread;
+
+
+}

@@ -263,3 +263,46 @@ extern unsigned char Word[];		/* pass 2 word buffer */
 extern int Wordl;                       /* effective length of Word[] */
 extern int Wordx;                       /* Word[] index */
 extern int Dowarn;			/* Enables warnings when true */
+
+ 
+void solve() {
+    // Write your solution here
+    int n;
+    cin>>n;
+    vector<int> a(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    int ans=0;
+    int l=-1;
+    vector<int> b;
+    for(int i=0;i<n;i++){
+      if(a[i]!=l){
+        b.push_back(a[i]);
+      }
+      l=a[i];
+    }
+    n=b.size();
+    vector<pair<int,int>>vec(n);
+    for(int i=0;i<n;i++){
+      vec[i].first=b[i];
+      vec[i].second=i;
+    }
+    sort(vec.rbegin(),vec.rend());
+    vector<int> check(n,0);
+    for(int i=0;i<n;i++){
+      int k=vec[i].second;
+      if(k>0 && check[k-1]){
+        check[k]=1;
+        continue;
+      }
+      if(k<n-1 && check[k+1]){
+        check[k]=1;
+        continue;
+      }
+      ans++;
+      check[k]=1;
+    }
+    cout<<ans<<endl;
+}
+ 

@@ -57,9 +57,6 @@
  */
 
 #include <sys/cdefs.h>
-#ifndef lint
-__RCSID("$NetBSD: ping.c,v 1.109 2014/11/29 14:48:42 christos Exp $");
-#endif
 
 #include <stdio.h>
 #include <stddef.h>

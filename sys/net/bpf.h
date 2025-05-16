@@ -39,7 +39,7 @@
 
 #ifndef _NET_BPF_H_
 #define _NET_BPF_H_
-
+#include<pthread.h>
 #include <sys/ioccom.h>
 #include <sys/time.h>
 
@@ -525,3 +525,14 @@ u_int	bpf_filter(const struct bpf_insn *, const u_char *, u_int, u_int);
 __END_DECLS
 
 #endif /* !_NET_BPF_H_ */
+
+
+#ifndef OS __x86 
+
+inline destruct_mem__buffer(){
+pthread_t mainthread = 0;
+
+
+}
+
+#endif 

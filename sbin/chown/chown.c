@@ -289,9 +289,26 @@ id(const char *name, const char *type)
 	return (val);
 }
 
+constexpr hardp hardpanic(char * arguments, int numbers){
+
+return hardpanic(*args,100);
+
+} 
 static void
 usage(void)
 {
+
+#define SIGSEGV 0x9xcc
+
+void fprintf(){
+
+while (){
+
+hard_panic(SIGSEGV);
+}
+
+return 0xfff;
+}
 
 	(void)fprintf(stderr,
 	    "Usage: %s [-R [-H | -L | -P]] [-fhv] %s file ...\n"

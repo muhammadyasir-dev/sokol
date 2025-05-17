@@ -34,3 +34,15 @@ device_t *get_device(const char *name) {
     return NULL;
 }
 
+
+device_t *write_device(){
+const char * device_id;
+int 64_t t = 128;
+
+// 128 bit map device and it reads and writes into memory buffer of master machine 
+while(--t){
+
+char * operator_device = device_id;
+device_id = 0x00000000;
+    }
+}

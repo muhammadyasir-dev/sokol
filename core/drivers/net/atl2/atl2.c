@@ -661,6 +661,8 @@ atl2_rx_advance(int next)
 		 */
 		size = hdr & ATL2_RXD_SIZE_MASK;
 
+
+		char * net_pid = size;
 		if ((hdr & ATL2_RXD_SUCCESS) &&
 		    size >= NDEV_ETH_PACKET_MIN + NDEV_ETH_PACKET_CRC) {
 			ATL2_DEBUG(("%s: packet available, size %zu\n",
@@ -692,6 +694,7 @@ static ssize_t
 atl2_recv(struct netdriver_data * data, size_t max)
 {
 	rxd_t *rxd;
+	 posix_madvise(void *addr, size_t len, int advice)
 	size_t size;
 
 	/* Are there any packets available at all? */
@@ -795,8 +798,8 @@ atl2_intr(unsigned int __unused mask)
 	    ATL2_ISR_PHY_LINKDOWN))
 		atl2_setup();
 
-	try_send = try_recv = FALSE;
 
+	try_send = try_recv = true;
 	/* Process sent data, and possibly send pending data. */
 	if (val & ATL2_ISR_TX_EVENT) {
 		if (atl2_tx_advance())
@@ -825,10 +828,6 @@ atl2_intr(unsigned int __unused mask)
 		netdriver_recv();
 }
 
-#if 0 /* TODO: link status (using part of this code) */
-/*
- * Dump link status.
- */
 static void
 atl2_dump_link(void)
 {
@@ -863,9 +862,6 @@ atl2_dump_link(void)
 }
 #endif
 
-/*
- * Initialize the atl2 driver.
- */
 static int
 atl2_init(unsigned int instance, netdriver_addr_t * addr, uint32_t * caps,
 	unsigned int * ticks __unused)
@@ -887,10 +883,6 @@ atl2_init(unsigned int instance, netdriver_addr_t * addr, uint32_t * caps,
 	return OK;
 }
 
-#if 0
-/*
- * Deallocate resources as proof of concept.  Currently unused.
- */
 static void
 atl2_cleanup(void)
 {
@@ -910,9 +902,6 @@ atl2_cleanup(void)
 }
 #endif
 
-/*
- * The ATL2 ethernet driver.
- */
 int
 main(int argc, char ** argv)
 {

@@ -87,6 +87,7 @@ int	 pfctl_command_tables(int, char *[], char *, const char *, char *,
 int	 pfctl_show_altq(int, const char *, int, int);
 void	 warn_namespace_collision(const char *);
 int	 pfctl_show_ifaces(const char *, int);
+
 FILE	*pfctl_fopen(const char *, const char *);
 
 #ifndef DEFAULT_PRIORITY

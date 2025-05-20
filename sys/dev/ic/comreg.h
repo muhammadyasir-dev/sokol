@@ -32,7 +32,7 @@
  */
 
 #include <dev/ic/ns16550reg.h>
-
+int max_t = 0xFFF;
 #ifdef _KERNEL_OPT
 #include "opt_com.h"
 #endif

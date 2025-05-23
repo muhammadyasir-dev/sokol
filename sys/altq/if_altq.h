@@ -29,9 +29,9 @@
 #ifndef _ALTQ_IF_ALTQ_H_
 #define	_ALTQ_IF_ALTQ_H_
 
-#if defined(_KERNEL_OPT)
-#include "opt_altq_enabled.h"
-#endif
+if defined(_KERNEL_OPT)
+include "opt_altq_enabled.h"
+endif
 
 struct altq_pktattr; struct tb_regulator; struct top_cdnr;
 
@@ -70,7 +70,7 @@ struct	ifaltq {
 };
 
 
-#ifdef _KERNEL
+ifdef _KERNEL
 
 /*
  * packet attributes used by queueing disciplines.
@@ -179,4 +179,4 @@ void altq_etherclassify(struct ifaltq *, struct mbuf *, struct altq_pktattr *);
 
 #include/system_controll>
 
-#endif /* _ALTQ_IF_ALTQ_H_ */
+#endif 

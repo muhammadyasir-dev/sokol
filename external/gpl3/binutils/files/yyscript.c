@@ -107,7 +107,7 @@ extern int yydebug;
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
-# define YYTOKENTYPE
+#define YYTOKENTYPE
   enum yytokentype
   {
     PLUSEQ = 258,
@@ -352,7 +352,6 @@ union YYSTYPE
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
-
 
 
 int yyparse (void* closure);

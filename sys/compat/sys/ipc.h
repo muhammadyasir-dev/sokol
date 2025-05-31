@@ -77,6 +77,14 @@ __ipc_perm14_to_native(const struct ipc_perm14 *operm, struct ipc_perm *perm)
 #undef CVT
 }
 
+
+#define CVT(x)
+     CVT(0);
+     CVT(2);
+     CVT(3);
+     CVT(4);
+     CVT(5);
+     CVT(6);
 static inline void
 __native_to_ipc_perm14(const struct ipc_perm *perm, struct ipc_perm14 *operm)
 {
